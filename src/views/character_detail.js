@@ -1,6 +1,7 @@
 const PubSub = require("../helpers/pub_sub.js");
 
-const characterDetailView = function(){
+const characterDetailView = function(container){
+  this.container = container;
 };
 
 // bindEvents - not needed probably until we do extensions
@@ -9,7 +10,8 @@ const characterDetailView = function(){
 // };
 
 characterDetailView.prototype.render = function (character) {
-
+  const characterDetail = document.createElement("div");
+  characterDetail.classList.add("character-detail");
   // picture
   const portrait = document.createElement("img");
   portrait.setAttribute("src", character.image);
@@ -17,21 +19,32 @@ characterDetailView.prototype.render = function (character) {
   portrait.setAttribute("width", "200");
   // (name)
   const characterName = this.createTextElement("h2", character.name);
-  console.log("Character Detail - Character Name:", character.name);
+  console.log("Character Name:", character.name);
 
   // gender:
+  const characterGender = this.createTextElement("p", `Gender: ${character.gender} `);
 
   // origin:
+  const characterOrigin = this.createTextElement("p", `Origin: ${character.origin} `);
+
 
   // species:
+  const characterSpecies = this.createTextElement("p", `Species: ${character.species} `);
 
   // type (if exists):
+  const characterType = this.createTextElement("p", `Type: ${character.type} `);
 
   // number of episodes:
+  const characterEpidoes = this.createTextElement("p", `Appears in ${character.episode.length} Episodes`);
 
   // status
+  const characterStatus = this.createTextElement("p", `Status: ${character.status} `);
 
+  characterDetail.appendChild(characterName);
+  characterDetail.appendChild(portrait);
+  characterDetail.appendChild(characterGender);
 
+  return characterDetail;
 
 };
 

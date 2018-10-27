@@ -17,7 +17,8 @@ CharacterListView.prototype.renderCharacterDetailViews = function (characters) {
     const characterItem = this.createCharacterListItem(rick);
     // console.log(rick);
     // once the character build is ready uncomment:
-    // this.container.appendChild(characterItem);
+    this.container.appendChild(characterItem);
+    console.log(this.container);
   });
 };
 
@@ -25,7 +26,8 @@ CharacterListView.prototype.createCharacterListItem = function (character) {
   // console.log(character);
   const characterDetailView = new CharacterDetailView();
   const characterDetail = characterDetailView.render(character);
-  // return characterDetail;
+  return characterDetail;
+  console.log("character detail", characterDetail);
 
 };
 
