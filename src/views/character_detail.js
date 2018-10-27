@@ -19,20 +19,27 @@ characterDetailView.prototype.render = function (character) {
   portrait.setAttribute("width", "200");
   // (name)
   const characterName = this.createTextElement("h2", character.name);
-  console.log("Character Name:", character.name);
+  // console.log("Character Name:", character.name);
 
   // gender:
   const characterGender = this.createTextElement("p", `Gender: ${character.gender} `);
 
   // origin:
-  const characterOrigin = this.createTextElement("p", `Origin: ${character.origin} `);
-
+  const characterOrigin = this.createTextElement("p", `Origin: ${character.origin.name} `);
 
   // species:
   const characterSpecies = this.createTextElement("p", `Species: ${character.species} `);
 
   // type (if exists):
-  const characterType = this.createTextElement("p", `Type: ${character.type} `);
+  // const characterType = this.createTextElement("p", `Type: ${character.type} `);
+  const characterType = document.createElement("p");
+  if (!character.type){
+    characterType.textContent = ""
+  }else{
+    characterType.textContent = `Type: ${character.type} `
+  }
+  // return characterType;
+// };
 
   // number of episodes:
   const characterEpidoes = this.createTextElement("p", `Appears in ${character.episode.length} Episodes`);
@@ -41,8 +48,13 @@ characterDetailView.prototype.render = function (character) {
   const characterStatus = this.createTextElement("p", `Status: ${character.status} `);
 
   characterDetail.appendChild(characterName);
+  characterDetail.appendChild(characterStatus);
   characterDetail.appendChild(portrait);
   characterDetail.appendChild(characterGender);
+  characterDetail.appendChild(characterOrigin);
+  characterDetail.appendChild(characterSpecies);
+  characterDetail.appendChild(characterType);
+  characterDetail.appendChild(characterEpidoes);
 
   return characterDetail;
 
@@ -75,8 +87,9 @@ characterDetailView.prototype.createType = function () {
   }else{
     type.textContent = `Type: ${this.character.type} `
   }
-  // return?
+  // return
 };
+
 
 // append that sheeeee-at.
 
