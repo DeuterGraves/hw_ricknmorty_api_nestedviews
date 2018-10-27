@@ -15,7 +15,7 @@ CharacterListView.prototype.renderCharacterDetailViews = function (characters) {
   const ricks = characters.results
   ricks.forEach((rick) => {
     const characterItem = this.createCharacterListItem(rick);
-    console.log(rick);
+    // console.log(rick);
     // once the character build is ready uncomment:
     this.container.appendChild(characterItem);
     // console.log(this.container);

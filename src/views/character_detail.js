@@ -19,6 +19,7 @@ characterDetailView.prototype.render = function (character) {
   portrait.setAttribute("width", "200");
   // (name)
   const characterName = this.createTextElement("h2", character.name);
+  // const characterLine = this.createElement("HR");
   // console.log("Character Name:", character.name);
 
   // gender:
@@ -48,6 +49,7 @@ characterDetailView.prototype.render = function (character) {
   const characterStatus = this.createTextElement("p", `Status: ${character.status} `);
 
   characterDetail.appendChild(characterName);
+  // characterDetail.appendChild(characterLine);
   characterDetail.appendChild(characterStatus);
   characterDetail.appendChild(portrait);
   characterDetail.appendChild(characterGender);

@@ -6,7 +6,7 @@ const CharacterListView = require("./views/characters_list_view.js")
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Javascript Loaded - Time to hold on tight, Morty.");
 
-  const listContainer = document.querySelector("section#characters-view");
+  const listContainer = document.querySelector("#characters-view");
   const characterListView = new CharacterListView(listContainer);
   characterListView.bindEvents()
 
