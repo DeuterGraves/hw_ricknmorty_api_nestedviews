@@ -16,7 +16,7 @@ Characters.prototype.getData = function () {
   .then((data) => {
     this.data = data
     PubSub.publish("Characters:all-data-ready", data)
-    console.log(data);
+    // console.log(data);
   })
   .catch((error) => {
     PubSub.publish("Characters:Error", error)
