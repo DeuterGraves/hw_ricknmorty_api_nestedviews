@@ -5,6 +5,10 @@ const Characters = function(){
   this.data = null;
 };
 
+// bind events - may nore be needed until we add extensions.
+
+
+
 Characters.prototype.getData = function () {
   const url = "https://rickandmortyapi.com/api/character/";
   const request = new Request(url);
@@ -18,5 +22,6 @@ Characters.prototype.getData = function () {
     PubSub.publish("Characters:Error", error)
   });
 };
+
 
 module.exports = Characters;
