@@ -1,0 +1,11 @@
+extensions:
+- filter to ricks
+- filter to mortys
+- get more than 20 items?
+- alive ricks
+- dead ricks
+- alive mortys
+- dead mortys
+- what about all characters with the same last known location?
+- all characters from the same origin
+- improve css

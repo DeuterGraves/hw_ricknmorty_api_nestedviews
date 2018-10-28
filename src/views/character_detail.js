@@ -82,15 +82,15 @@ characterDetailView.prototype.clearCharacter = function () {
 
 // create picture
 
-// handle no type given.
-characterDetailView.prototype.createType = function () {
-  if (!this.character.type){
-    type.textContent = ""
-  }else{
-    type.textContent = `Type: ${this.character.type} `
-  }
-  // return
-};
+// // handle no type given.
+// characterDetailView.prototype.createType = function () {
+//   if (!this.character.type){
+//     type.textContent = ""
+//   }else{
+//     type.textContent = `Type: ${this.character.type} `
+//   }
+//   // return
+// };
 
 
 // append that sheeeee-at.
