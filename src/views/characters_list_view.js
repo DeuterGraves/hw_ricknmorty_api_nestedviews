@@ -31,5 +31,7 @@ CharacterListView.prototype.createCharacterListItem = function (character) {
 
 };
 
+// subscribe to "SelectView:character-selected" and show only ricks or only MORTYS
+
 
 module.exports = CharacterListView;

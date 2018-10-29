@@ -3,9 +3,14 @@ const PubSub = require("../helpers/pub_sub.js");
 
 const Characters = function(){
   this.data = null;
+  // data prepare for character dropdown list.
+  // this.characterNames = []
 };
 
 // bind events - may nore be needed until we add extensions.
+Characters.prototype.bindEvents = function () {
+  // subscribe for the select view change.
+};
 
 
 

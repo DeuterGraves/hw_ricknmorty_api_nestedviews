@@ -19,7 +19,7 @@ characterDetailView.prototype.render = function (character) {
   portrait.setAttribute("width", "200");
   // (name)
   const characterName = this.createTextElement("h2", character.name);
-  // const characterLine = this.createElement("HR");
+  const characterLine = document.createElement("hr");
   // console.log("Character Name:", character.name);
 
   // gender:
@@ -49,7 +49,7 @@ characterDetailView.prototype.render = function (character) {
   const characterStatus = this.createTextElement("p", `Status: ${character.status} `);
 
   characterDetail.appendChild(characterName);
-  // characterDetail.appendChild(characterLine);
+  characterDetail.appendChild(characterLine);
   characterDetail.appendChild(characterStatus);
   characterDetail.appendChild(portrait);
   characterDetail.appendChild(characterGender);
@@ -80,7 +80,6 @@ characterDetailView.prototype.clearCharacter = function () {
   this.container.innerHTML = "";
 };
 
-// create picture
 
 // // handle no type given.
 // characterDetailView.prototype.createType = function () {
@@ -93,6 +92,5 @@ characterDetailView.prototype.clearCharacter = function () {
 // };
 
 
-// append that sheeeee-at.
 
 module.exports = characterDetailView;

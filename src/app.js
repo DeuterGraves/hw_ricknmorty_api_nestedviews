@@ -1,7 +1,8 @@
 // require the stuffs here
 const Request = require("./helpers/request.js");
 const Characters = require("./models/characters.js");
-const CharacterListView = require("./views/characters_list_view.js")
+const CharacterListView = require("./views/characters_list_view.js");
+const SelectView = require("./views/select_view.js");
 
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Javascript Loaded - Time to hold on tight, Morty.");
@@ -10,10 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const characterListView = new CharacterListView(listContainer);
   characterListView.bindEvents()
 
-  // call your bind TidalEvents
   // iteration one - get data call here.
 
   const characters = new Characters();
   characters.getData()
+
+  // call your  bindEvents
+
+  const menu = document.querySelector("nav.character-menu");
+  const characterMenu = new SelectView(menu);
+  characterMenu.bindEvents();
+
 
 })
