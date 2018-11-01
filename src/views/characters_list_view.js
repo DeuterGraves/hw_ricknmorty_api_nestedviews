@@ -7,7 +7,7 @@ const CharacterListView = function(container){
 
 CharacterListView.prototype.bindEvents = function(){
   PubSub.subscribe("Characters:all-data-ready", (event)=>{
-    console.log("data ready list view bindevents", event.detail);
+    // console.log("data ready list view bindevents", event.detail);
     this.clearList();
     this.renderCharacterDetailViews(event.detail);
   });
@@ -15,23 +15,47 @@ CharacterListView.prototype.bindEvents = function(){
     // render character synopsis
     const characterSummary = this.renderCharacterSummary(event.detail);
     // goes above the grid.
-    // console.log("Main Character!!", event.detail);
+    console.log("Main Character!!", event.detail);
   })
 };
 
 CharacterListView.prototype.renderCharacterSummary = function (mainCharacterObject) {
+  const characterList = mainCharacterObject.characterList
+  const characterName = mainCharacterObject.characterName
+
+  let numAlive = 0
+  characterList.forEach((character) => {
+    if (character.status === "Alive"){
+      numAlive ++;
+    };
+  });
+
+  let numDead = 0
+  characterList.forEach((character) => {
+    if (character.status === "Dead"){
+      numDead ++;
+    };
+  });
+
+  let numMIA = 0
+  characterList.forEach((character) => {
+    if (character.status === "unknown"){
+      numMIA ++;
+    };
+  });
+
   const pickleRick = document.createElement("p")
   pickleRick.classList.add("character-summary")
-  pickleRick.textContent = `There are ${mainCharacterObject.characterList.length}  ${mainCharacterObject.characterName}s, [num] are alive, [num] are dead, and [num] are MIA.`
+  pickleRick.textContent = `There are ${characterList.length}  ${characterName}s, ${numAlive}  are alive, ${numDead}  are dead, and ${numMIA}  are MIA.`
   this.container.appendChild(pickleRick)
   // console.log("I'm pickle rick.");
 
 };
 
 CharacterListView.prototype.renderCharacterDetailViews = function (characters) {
-  const ricks = characters
-  ricks.forEach((rick) => {
-    const characterItem = this.createCharacterListItem(rick);
+  // const characters = characters
+  characters.forEach((character) => {
+    const characterItem = this.createCharacterListItem(character);
     // console.log(rick);
     // once the character build is ready uncomment:
     this.container.appendChild(characterItem);
