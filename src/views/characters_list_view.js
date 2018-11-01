@@ -13,9 +13,19 @@ CharacterListView.prototype.bindEvents = function(){
   });
   PubSub.subscribe("Characters:main-character-selected", (event) => {
     // render character synopsis
+    const characterSummary = this.renderCharacterSummary(event.detail);
     // goes above the grid.
-    console.log("Main Character!!", event.detail);
+    // console.log("Main Character!!", event.detail);
   })
+};
+
+CharacterListView.prototype.renderCharacterSummary = function (mainCharacterObject) {
+  const pickleRick = document.createElement("p")
+  pickleRick.classList.add("character-summary")
+  pickleRick.textContent = `There are ${mainCharacterObject.characterList.length}  ${mainCharacterObject.characterName}s, [num] are alive, [num] are dead, and [num] are MIA.`
+  this.container.appendChild(pickleRick)
+  // console.log("I'm pickle rick.");
+
 };
 
 CharacterListView.prototype.renderCharacterDetailViews = function (characters) {

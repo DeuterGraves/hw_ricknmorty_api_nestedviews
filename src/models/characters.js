@@ -11,7 +11,7 @@ Characters.prototype.bindEvents = function () {
   // subscribe for the select view change.
   PubSub.subscribe("SelectView:character-selected", (event) => {
     const characterName = event.detail;
-    console.log("Characters.js bind events", characterName);
+    // console.log("Characters.js bind events", characterName);
     this.publishCharactersByName(characterName);
   })
 };
@@ -69,16 +69,26 @@ Characters.prototype.publishCharactersByName = function (characterName) {
   // console.log("publishCharactersByName", characterName);
   const foundCharacters = this.charactersByName(characterName);
   // console.log(foundCharacters);
-  PubSub.publish("Characters:all-data-ready", foundCharacters)
+  PubSub.publish("Characters:all-data-ready", foundCharacters);
 
-// if statement here -- if characterName == then this:
-if (characterName !== "all" || "everyone"){
-  selectedCharacter = new SelectedCharacter(characterName, foundCharacters)
-  // pubsub here - to trigger a synopsis There are [num] [character]s: [num] are dead, [num] are alive and [num] are MIA.
-  // create an object - selected character name and it's array
-  PubSub.publish("Characters:main-character-selected", selectedCharacter)
-  console.log("selectedCharacter", selectedCharacter);
-}
+  let alert = true
+  if (characterName === "all") {
+    alert = false;
+  }else if (characterName === "everyone") {
+    alert = false;
+  }else{
+    alert = true;
+  };
+  console.log("alert", alert);
+  // if statement here -- if characterName == then this:
+  if (alert) {
+    selectedCharacter = new SelectedCharacter(characterName, foundCharacters)
+    // pubsub here - to trigger a synopsis There are [num] [character]s: [num] are dead, [num] are alive and [num] are MIA.
+    // create an object - selected character name and it's array
+    PubSub.publish("Characters:main-character-selected", selectedCharacter)
+    // console.log("selectedCharacter list", selectedCharacter.characterList);
+    // console.log("selectedCharacter name", selectedCharacter.characterName);
+  }
 
   // function
 };

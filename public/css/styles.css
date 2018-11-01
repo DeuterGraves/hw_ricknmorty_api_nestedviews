@@ -76,7 +76,7 @@ h2{
   /* text-decoration: underline; */
 }
 
-label{
+label, .character-summary{
   color: #2F2871;
 }
 
