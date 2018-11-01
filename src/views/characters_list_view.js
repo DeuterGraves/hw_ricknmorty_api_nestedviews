@@ -7,10 +7,15 @@ const CharacterListView = function(container){
 
 CharacterListView.prototype.bindEvents = function(){
   PubSub.subscribe("Characters:all-data-ready", (event)=>{
-    // console.log("listview bindevents", event.detail);
+    console.log("data ready list view bindevents", event.detail);
     this.clearList();
     this.renderCharacterDetailViews(event.detail);
   });
+  PubSub.subscribe("Characters:main-character-selected", (event) => {
+    // render character synopsis
+    // goes above the grid.
+    console.log("Main Character!!", event.detail);
+  })
 };
 
 CharacterListView.prototype.renderCharacterDetailViews = function (characters) {
@@ -37,7 +42,6 @@ CharacterListView.prototype.clearList = function () {
   this.container.innerHTML = "";
 };
 
-// subscribe to "SelectView:character-selected" and show only ricks or only MORTYS
 
 
 module.exports = CharacterListView;

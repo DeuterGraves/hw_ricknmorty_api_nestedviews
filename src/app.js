@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const characterListView = new CharacterListView(listContainer);
   characterListView.bindEvents()
 
-  // iteration one - get data call here.
 
   const characters = new Characters();
   characters.bindEvents();

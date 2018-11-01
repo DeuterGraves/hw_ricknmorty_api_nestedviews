@@ -12,11 +12,13 @@ const characterDetailView = function(container){
 characterDetailView.prototype.render = function (character) {
   const characterDetail = document.createElement("div");
   characterDetail.classList.add("character-detail");
+
   // picture
   const portrait = document.createElement("img");
   portrait.setAttribute("src", character.image);
   portrait.setAttribute("alt", `Portrait of ${character.name}.`)
   portrait.setAttribute("width", "200");
+
   // (name)
   const characterName = this.createTextElement("h2", character.name);
   const characterLine = document.createElement("hr");
@@ -31,8 +33,6 @@ characterDetailView.prototype.render = function (character) {
   // species:
   const characterSpecies = this.createTextElement("p", `Species: ${character.species} `);
 
-  // type (if exists):
-  // const characterType = this.createTextElement("p", `Type: ${character.type} `);
   const characterType = document.createElement("p");
   // if (!character.type){
   //   characterType.textContent = ""
@@ -64,7 +64,6 @@ characterDetailView.prototype.render = function (character) {
 
 };
 
-// build it all.
 
 //  create text element
 characterDetailView.prototype.createTextElement = function (elementType, text) {
@@ -72,26 +71,6 @@ characterDetailView.prototype.createTextElement = function (elementType, text) {
   element.textContent = text;
   return element;
 };
-
-// create list element not yet)
-// characterDetailView.prototype.methodName = function () {
-//
-// };
-//
-// characterDetailView.prototype.clearCharacter = function () {
-//   this.container.innerHTML = "";
-// };
-
-
-// // handle no type given.
-// characterDetailView.prototype.createType = function () {
-//   if (!this.character.type){
-//     type.textContent = ""
-//   }else{
-//     type.textContent = `Type: ${this.character.type} `
-//   }
-//   // return
-// };
 
 
 

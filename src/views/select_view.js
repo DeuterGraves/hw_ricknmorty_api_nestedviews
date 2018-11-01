@@ -15,7 +15,5 @@ SelectView.prototype.bindEvents = function () {
   });
 };
 
-// DO A DROP DOWN - treat characternames as arrays with split"" go for uniques
-// maybe have rick/morty/ summer/ etc as items and then have "else/other/everyone else as the last drop down item. "
 
 module.exports = SelectView;

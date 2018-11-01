@@ -76,6 +76,10 @@ h2{
   /* text-decoration: underline; */
 }
 
+label{
+  color: #2F2871;
+}
+
 li {
   /* color: #033f63; */
 }
