@@ -14,7 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // iteration one - get data call here.
 
   const characters = new Characters();
-  characters.getData()
+  characters.bindEvents();
+  characters.getData();
 
   // call your  bindEvents
 

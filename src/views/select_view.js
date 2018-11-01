@@ -8,13 +8,10 @@ const SelectView = function(menu){
 
 // bindEvents
 SelectView.prototype.bindEvents = function () {
-  // listen for the character name data ready from the data model and populate the dropdown. this will be the sorted characters list for the first dropdown.
-  // characters dropdown
-
   this.menu.addEventListener("change", (event) => {
     const characterName = event.target.value;
     PubSub.publish("SelectView:character-selected", characterName)
-    console.log(characterName);
+    // console.log(characterName);
   });
 };
 

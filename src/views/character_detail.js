@@ -34,11 +34,13 @@ characterDetailView.prototype.render = function (character) {
   // type (if exists):
   // const characterType = this.createTextElement("p", `Type: ${character.type} `);
   const characterType = document.createElement("p");
-  if (!character.type){
-    characterType.textContent = ""
-  }else{
-    characterType.textContent = `Type: ${character.type} `
-  }
+  // if (!character.type){
+  //   characterType.textContent = ""
+  // }else{
+  //   characterType.textContent = `Type: ${character.type} `
+  // }
+  // javascript ternary if/else - no other option.
+  !character.type ? characterType.textContent = "" : characterType.textContent = `Type: ${character.type} `
   // return characterType;
 // };
 
@@ -75,10 +77,10 @@ characterDetailView.prototype.createTextElement = function (elementType, text) {
 // characterDetailView.prototype.methodName = function () {
 //
 // };
-
-characterDetailView.prototype.clearCharacter = function () {
-  this.container.innerHTML = "";
-};
+//
+// characterDetailView.prototype.clearCharacter = function () {
+//   this.container.innerHTML = "";
+// };
 
 
 // // handle no type given.
