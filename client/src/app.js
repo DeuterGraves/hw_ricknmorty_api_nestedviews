@@ -1,5 +1,5 @@
 // require the stuffs here
-const Request = require("./helpers/request.js");
+const RequestHelper = require("./helpers/request.js");
 const Characters = require("./models/characters.js");
 const CharacterListView = require("./views/characters_list_view.js");
 const SelectView = require("./views/select_view.js");
@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const characters = new Characters();
   characters.bindEvents();
   characters.getData();
+  // characters.getPages();
 
   // call your  bindEvents
 

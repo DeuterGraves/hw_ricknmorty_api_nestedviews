@@ -10,6 +10,7 @@ const characterDetailView = function(container){
 // };
 
 characterDetailView.prototype.render = function (character) {
+  console.log("character from character detail view", character);
   const characterDetail = document.createElement("div");
   characterDetail.classList.add("character-detail");
 

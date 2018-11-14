@@ -6,17 +6,17 @@ const CharacterListView = function(container){
 };
 
 CharacterListView.prototype.bindEvents = function(){
-  PubSub.subscribe("Characters:all-data-ready", (event)=>{
-    // console.log("data ready list view bindevents", event.detail);
-    this.clearList();
-    this.renderCharacterDetailViews(event.detail);
-  });
   PubSub.subscribe("Characters:main-character-selected", (event) => {
     // render character synopsis
     const characterSummary = this.renderCharacterSummary(event.detail);
     // goes above the grid.
     console.log("Main Character!!", event.detail);
   })
+  PubSub.subscribe("Characters:all-data-ready", (event)=>{
+    // console.log("data ready list view bindevents", event.detail);
+    this.clearList();
+    this.renderCharacterDetailViews(event.detail);
+  });
 };
 
 CharacterListView.prototype.renderCharacterSummary = function (mainCharacterObject) {
@@ -46,10 +46,9 @@ CharacterListView.prototype.renderCharacterSummary = function (mainCharacterObje
 
   const pickleRick = document.createElement("p")
   pickleRick.classList.add("character-summary")
-  pickleRick.textContent = `There are ${characterList.length}  ${characterName}s, ${numAlive}  are alive, ${numDead}  are dead, and ${numMIA}  are MIA.`
+  pickleRick.textContent = `There are ${characterList.length}  ${characterName}s, ${numAlive} are alive, ${numDead} are dead, and ${numMIA} are MIA.`
   this.container.appendChild(pickleRick)
   // console.log("I'm pickle rick.");
-
 };
 
 CharacterListView.prototype.renderCharacterDetailViews = function (characters) {

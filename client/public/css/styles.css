@@ -20,6 +20,7 @@ body {
   display:grid;
   grid-template-areas: "hd"
                        "nv"
+                       /* "su" */
                        "mn"
                        "ft"
 }
@@ -45,6 +46,10 @@ body {
   grid-gap: 1em;
   padding-bottom: 30px;
 }
+
+/* .character-summary{
+  grid-area: su;
+} */
 
 footer{
 }
@@ -76,7 +81,7 @@ h2{
   /* text-decoration: underline; */
 }
 
-label, .character-summary{
+label, .character-summary, #character-summary{
   color: #2F2871;
 }
 

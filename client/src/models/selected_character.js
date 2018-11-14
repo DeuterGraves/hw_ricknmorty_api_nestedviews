@@ -3,7 +3,7 @@
 // constructor
 const SelectedCharacter = function (characterName, characterList){
   this.characterName = characterName;
-  this. characterList = characterList;
+  this.characterList = characterList;
 };
 
 

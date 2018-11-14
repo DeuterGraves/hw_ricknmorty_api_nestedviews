@@ -1,4 +1,4 @@
-const Request = require("../helpers/request.js");
+const RequestHelper = require("../helpers/request.js");
 const PubSub = require("../helpers/pub_sub.js");
 const SelectedCharacter = require("./selected_character.js")
 
@@ -18,18 +18,68 @@ Characters.prototype.bindEvents = function () {
 
 
 Characters.prototype.getData = function () {
-  const url = "https://rickandmortyapi.com/api/character/";
-  const request = new Request(url);
-  request.get()
+  const url = "http://localhost:3000/api/characters";
+  const requestHelper = new RequestHelper(url);
+  requestHelper.get()
   .then((data) => {
     this.data = data.results
+    // just page 1
     PubSub.publish("Characters:all-data-ready", data.results)
-    // console.log(data);
+    console.log("page 1 characters", data.results);
   })
   .catch((error) => {
     PubSub.publish("Characters:Error", error)
   });
 };
+
+/*
+Characters.prototype.getPages = function () {
+  const url = "http://localhost:3000/api/characters";
+  const requestHelper = new RequestHelper(url);
+  requestHelper.get()
+  .then((data) => {
+    this.data = data.info.pages
+    console.log("pages available", this.data);
+    this.buildPagesArray(this.data)
+  })
+
+};
+
+Characters.prototype.buildPagesArray = function (pages) {
+  var i = 0;
+  var pagesArray = []
+  while(i < pages){
+    i++;
+    pagesArray.push(`https://rickandmortyapi.com/api/character/?page=${i} `)
+  }
+  console.log("page", pagesArray);
+  // now call the function that handles promise.all and pass in this array.
+  this.getAllCharacters(pagesArray);
+
+};
+
+Characters.prototype.getAllCharacters = function (pagesArray) {
+  Promise.all(pagesArray.map(page =>
+  fetch(page)
+  // .then(checkStatus)
+  .then((response) => response.json())
+  // .catch(logError)
+))
+.then (pages =>{
+  characterList = []
+  for (var page of pages){
+    characterList.push(page.results)
+  }
+  characters = characterList.flat()
+  console.log("all characters?", characters);
+  console.log("test data", characters[220].name);
+  //  all characters
+  // PubSub.publish("Characters:all-data-ready", characterList);
+})
+
+};
+
+*/
 
 Characters.prototype.charactersByName = function (characterName) {
   // console.log("characters by name", characterName);
@@ -79,7 +129,7 @@ Characters.prototype.publishCharactersByName = function (characterName) {
   }else{
     alert = true;
   };
-  console.log("alert", alert);
+  // console.log("alert", alert);
   // if statement here -- if characterName == then this:
   if (alert) {
     selectedCharacter = new SelectedCharacter(characterName, foundCharacters)
