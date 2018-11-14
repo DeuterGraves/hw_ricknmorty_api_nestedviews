@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const characters = new Characters();
   characters.bindEvents();
-  characters.getData();
-  // characters.getPages();
+  // characters.getData();
+  characters.getPages();
 
   // call your  bindEvents
 

@@ -32,7 +32,7 @@ Characters.prototype.getData = function () {
   });
 };
 
-/*
+
 Characters.prototype.getPages = function () {
   const url = "http://localhost:3000/api/characters";
   const requestHelper = new RequestHelper(url);
@@ -70,16 +70,23 @@ Characters.prototype.getAllCharacters = function (pagesArray) {
   for (var page of pages){
     characterList.push(page.results)
   }
+  // this.data - here
   characters = characterList.flat()
-  console.log("all characters?", characters);
-  console.log("test data", characters[220].name);
+  // console.log("all characters?", characters);
   //  all characters
   // PubSub.publish("Characters:all-data-ready", characterList);
+})
+.then((data) => {
+  this.data = characters
+  // just page 1
+  PubSub.publish("Characters:all-data-ready", characters)
+  console.log("all characters", characters);
+  console.log("test data", characters[220].name);
 })
 
 };
 
-*/
+
 
 Characters.prototype.charactersByName = function (characterName) {
   // console.log("characters by name", characterName);
