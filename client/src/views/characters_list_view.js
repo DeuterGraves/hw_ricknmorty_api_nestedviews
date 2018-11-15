@@ -44,10 +44,12 @@ CharacterListView.prototype.renderCharacterSummary = function (mainCharacterObje
     };
   });
 
-  const pickleRick = document.createElement("p")
-  pickleRick.classList.add("character-summary")
-  pickleRick.textContent = `There are ${characterList.length}  ${characterName}s, ${numAlive} are alive, ${numDead} are dead, and ${numMIA} are MIA.`
-  this.container.appendChild(pickleRick)
+  const summaryContainer = document.querySelector("section#character-summary");
+  const pickleRick = document.createElement("p");
+  pickleRick.classList.add("character-summary");
+  pickleRick.textContent = `There are ${characterList.length}  ${characterName}s, ${numAlive} are alive, ${numDead} are dead, and ${numMIA} are MIA.`;
+  summaryContainer.innerHTML = "";
+  summaryContainer.appendChild(pickleRick);
   // console.log("I'm pickle rick.");
 };
 
