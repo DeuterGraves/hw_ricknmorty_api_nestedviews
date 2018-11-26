@@ -1,11 +1,11 @@
-/* MEDIA QUERIES */
-@media(min-width: 500px){
 html{
   height: 100%;
 }
 
 body {
   background-color: #D1E1D1;
+  background-image: url(../images/Portal.jpg);
+  background-attachment: fixed;
   /*width: 90%;
   margin: auto; */
   display: grid;
@@ -15,6 +15,47 @@ body {
   color: #C1D7C1;
   padding: 30px;
 }
+
+h1 {
+  color: #272727;
+  font-size: 2em;
+  font-weight: 700;
+  /* background-color: #fedc97; */
+}
+
+div.character-detail{
+  background-color: rgba(39,39,39, 0.9);
+  border-radius: 16px;
+  padding: 15px;
+  margin-bottom: 16px;
+}
+
+h2{
+  font-size: 1.25em;
+  font-weight: 500;
+  /* text-decoration: underline; */
+}
+
+label, .character-summary, #character-summary{
+  color: #2F2871;
+}
+
+li {
+  /* color: #033f63; */
+}
+
+hr {
+    /* border: 0;
+    height: 3px;
+    background-image: linear-gradient(to right, rgba(40, 102, 110, 0), rgba(40, 102, 110, 0.75), rgba(40, 102, 110, 0)); */
+}
+
+.character-links{
+  color: #272727;
+}
+
+/* MEDIA QUERIES */
+@media(min-width: 500px){
 
 .wrapper{
   display:grid;
@@ -47,12 +88,16 @@ body {
   padding-bottom: 30px;
 }
 
+div.character-detail{
+margin-bottom: 0px;
+}
+
 /* .character-summary{
   grid-area: su;
 } */
 
-footer{
-}
+/* footer{
+} */
 
 .wrapper > footer {
   background-color: #2F2871;
@@ -62,42 +107,16 @@ footer{
   padding: 20px;
 }
 
-h1 {
-  color: #11C152;
-  font-size: 2em;
-  font-weight: 700;
-  /* background-color: #fedc97; */
-}
 
-div.character-detail{
-  background-color: #272727;
-  border-radius: 16px;
-  padding: 15px;
-}
-
-h2{
-  font-size: 1.25em;
-  font-weight: 500;
-  /* text-decoration: underline; */
-}
-
-label, .character-summary, #character-summary{
-  color: #2F2871;
-}
-
-li {
-  /* color: #033f63; */
-}
-
-hr {
-    /* border: 0;
-    height: 3px;
-    background-image: linear-gradient(to right, rgba(40, 102, 110, 0), rgba(40, 102, 110, 0.75), rgba(40, 102, 110, 0)); */
-}
-
-.character-links{
-  color: #272727;
-}
 
 /*end media queries*/
+}
+
+@media(min-width: 1020px){
+  #characters-view {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 1em;
+    padding-bottom: 30px;
+  }
 }
