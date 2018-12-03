@@ -10,7 +10,6 @@ const characterDetailView = function(container){
 // };
 
 characterDetailView.prototype.render = function (character) {
-  console.log("character from character detail view", character);
   const characterDetail = document.createElement("div");
   characterDetail.classList.add("character-detail");
 
@@ -23,7 +22,6 @@ characterDetailView.prototype.render = function (character) {
   // (name)
   const characterName = this.createTextElement("h2", character.name);
   const characterLine = document.createElement("hr");
-  // console.log("Character Name:", character.name);
 
   // gender:
   const characterGender = this.createTextElement("p", `Gender: ${character.gender} `);

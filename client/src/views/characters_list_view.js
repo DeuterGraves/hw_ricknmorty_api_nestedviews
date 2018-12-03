@@ -17,12 +17,16 @@ CharacterListView.prototype.bindEvents = function(){
     this.clearList();
     this.renderCharacterDetailViews(event.detail);
   });
+  PubSub.subscribe("Characters:others-selected", (event)=>{
+    this.clearCharacterSummary(event.detail);
+  })
 };
 
 CharacterListView.prototype.renderCharacterSummary = function (mainCharacterObject) {
   const characterList = mainCharacterObject.characterList
   const characterName = mainCharacterObject.characterName
 
+// refactor - get numAlive
   let numAlive = 0
   characterList.forEach((character) => {
     if (character.status === "Alive"){
@@ -30,6 +34,7 @@ CharacterListView.prototype.renderCharacterSummary = function (mainCharacterObje
     };
   });
 
+// refactor - get numDead
   let numDead = 0
   characterList.forEach((character) => {
     if (character.status === "Dead"){
@@ -37,6 +42,7 @@ CharacterListView.prototype.renderCharacterSummary = function (mainCharacterObje
     };
   });
 
+// refactor - get numMIA
   let numMIA = 0
   characterList.forEach((character) => {
     if (character.status === "unknown"){
@@ -51,6 +57,17 @@ CharacterListView.prototype.renderCharacterSummary = function (mainCharacterObje
   summaryContainer.innerHTML = "";
   summaryContainer.appendChild(pickleRick);
   // console.log("I'm pickle rick.");
+};
+
+CharacterListView.prototype.clearCharacterSummary = function (who) {
+  let summaryContainer = document.querySelector("section#character-summary");
+  let characterText = document.createElement("p");
+  characterText.classList.add("character-summary");
+  characterText.textContent = `${who}  Characters Listed:`;
+  summaryContainer.innerHTML = "";
+  // pickleRick.innerHTML = "NONE!";
+  summaryContainer.appendChild(characterText);
+
 };
 
 CharacterListView.prototype.renderCharacterDetailViews = function (characters) {

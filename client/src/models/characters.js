@@ -11,7 +11,6 @@ Characters.prototype.bindEvents = function () {
   // subscribe for the select view change.
   PubSub.subscribe("SelectView:character-selected", (event) => {
     const characterName = event.detail;
-    // console.log("Characters.js bind events", characterName);
     this.publishCharactersByName(characterName);
   })
 };
@@ -25,7 +24,6 @@ Characters.prototype.getData = function () {
     this.data = data.results
     // just page 1
     PubSub.publish("Characters:all-data-ready", data.results)
-    console.log("page 1 characters", data.results);
   })
   .catch((error) => {
     PubSub.publish("Characters:Error", error)
@@ -39,7 +37,6 @@ Characters.prototype.getPages = function () {
   requestHelper.get()
   .then((data) => {
     this.data = data.info.pages
-    console.log("pages available", this.data);
     this.buildPagesArray(this.data)
   })
 
@@ -52,7 +49,6 @@ Characters.prototype.buildPagesArray = function (pages) {
     i++;
     pagesArray.push(`https://rickandmortyapi.com/api/character/?page=${i} `)
   }
-  console.log("page", pagesArray);
   // now call the function that handles promise.all and pass in this array.
   this.getAllCharacters(pagesArray);
 
@@ -72,7 +68,6 @@ Characters.prototype.getAllCharacters = function (pagesArray) {
   }
   // this.data - here
   characters = characterList.flat()
-  // console.log("all characters?", characters);
   //  all characters
   // PubSub.publish("Characters:all-data-ready", characterList);
 })
@@ -80,8 +75,6 @@ Characters.prototype.getAllCharacters = function (pagesArray) {
   this.data = characters
   // just page 1
   PubSub.publish("Characters:all-data-ready", characters)
-  console.log("all characters", characters);
-  console.log("test data", characters[220].name);
 })
 
 };
@@ -89,8 +82,6 @@ Characters.prototype.getAllCharacters = function (pagesArray) {
 
 
 Characters.prototype.charactersByName = function (characterName) {
-  // console.log("characters by name", characterName);
-  // console.log("this data", this.data);
   let thisData = this.data;
   if (characterName === "all")  {
     return thisData;
@@ -105,7 +96,6 @@ Characters.prototype.charactersByName = function (characterName) {
     });
   }
   else{
-    // console.log("everyone else should be shown.");
     // return data without rick, morty, summer, jerry, beth.
 
     return this.data.filter((character) => {
@@ -123,28 +113,32 @@ Characters.prototype.charactersByName = function (characterName) {
 };
 
 Characters.prototype.publishCharactersByName = function (characterName) {
-  // console.log("publishCharactersByName", characterName);
   const foundCharacters = this.charactersByName(characterName);
-  // console.log(foundCharacters);
   PubSub.publish("Characters:all-data-ready", foundCharacters);
 
   let alert = true
   if (characterName === "all") {
     alert = false;
+    PubSub.publish("Characters:others-selected", "All");
+    // set summaryContainer to empty?
   }else if (characterName === "everyone") {
     alert = false;
+    PubSub.publish("Characters:others-selected", "Non-Sanchez/Smith Family");
+    // set summaryContainer to empty?
   }else{
     alert = true;
   };
-  // console.log("alert", alert);
   // if statement here -- if characterName == then this:
   if (alert) {
     selectedCharacter = new SelectedCharacter(characterName, foundCharacters)
     // pubsub here - to trigger a synopsis There are [num] [character]s: [num] are dead, [num] are alive and [num] are MIA.
     // create an object - selected character name and it's array
     PubSub.publish("Characters:main-character-selected", selectedCharacter)
-    // console.log("selectedCharacter list", selectedCharacter.characterList);
-    // console.log("selectedCharacter name", selectedCharacter.characterName);
+  }
+  else{
+    // let message = "Did this work?"
+    // PubSub.publish("Characters:others-selected", message);
+
   }
 
   // function
