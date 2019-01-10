@@ -56,41 +56,16 @@ CharacterListView.prototype.renderCharacterSummary = function (mainCharacterObje
   const characterList = mainCharacterObject.characterList
   const characterName = mainCharacterObject.characterName
 
-// refactor - get numAlive
 let numAlive = this.getNumAlive(characterList);
 let numDead = this.getNumDead(characterList);
 let numMIA = this.getNumMIA(characterList);
 
-  // let numAlive = 0
-  // characterList.forEach((character) => {
-  //   if (character.status === "Alive"){
-  //     numAlive ++;
-  //   };
-  // });
-
-// refactor - get numDead
-  // let numDead = 0
-  // characterList.forEach((character) => {
-  //   if (character.status === "Dead"){
-  //     numDead ++;
-  //   };
-  // });
-
-// refactor - get numMIA
-  // let numMIA = 0
-  // characterList.forEach((character) => {
-  //   if (character.status === "unknown"){
-  //     numMIA ++;
-  //   };
-  // });
-
   const summaryContainer = document.querySelector("section#character-summary");
-  const pickleRick = document.createElement("p");
-  pickleRick.classList.add("character-summary");
-  pickleRick.textContent = `There are ${characterList.length}  ${characterName}s, ${numAlive} are alive, ${numDead} are dead, and ${numMIA} are MIA.`;
+  const sumParagraph = document.createElement("p");
+  sumParagraph.classList.add("character-summary");
+  sumParagraph.textContent = `There are ${characterList.length}  ${characterName}s, ${numAlive} are alive, ${numDead} are dead, and ${numMIA} are MIA.`;
   summaryContainer.innerHTML = "";
-  summaryContainer.appendChild(pickleRick);
-  // console.log("I'm pickle rick.");
+  summaryContainer.appendChild(sumParagraph);
 };
 
 CharacterListView.prototype.clearCharacterSummary = function (who) {
@@ -99,7 +74,7 @@ CharacterListView.prototype.clearCharacterSummary = function (who) {
   characterText.classList.add("character-summary");
   characterText.textContent = `${who}  Characters Listed:`;
   summaryContainer.innerHTML = "";
-  // pickleRick.innerHTML = "NONE!";
+  // sumParagraph.innerHTML = "NONE!";
   summaryContainer.appendChild(characterText);
 
 };
