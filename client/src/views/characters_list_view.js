@@ -22,6 +22,10 @@ CharacterListView.prototype.bindEvents = function(){
   })
 };
 
+CharacterListView.prototype.getCharacterCount = function (characterList) {
+  return characterList.length
+};
+
 CharacterListView.prototype.getNumAlive = function(characterList){
   let numAlive = 0
   characterList.forEach((character) => {
@@ -56,14 +60,17 @@ CharacterListView.prototype.renderCharacterSummary = function (mainCharacterObje
   const characterList = mainCharacterObject.characterList
   const characterName = mainCharacterObject.characterName
 
-let numAlive = this.getNumAlive(characterList);
-let numDead = this.getNumDead(characterList);
-let numMIA = this.getNumMIA(characterList);
+  let numAlive = this.getNumAlive(characterList);
+  let numDead = this.getNumDead(characterList);
+  let numMIA = this.getNumMIA(characterList);
+  let characterCount = this.getCharacterCount(characterList);
 
   const summaryContainer = document.querySelector("section#character-summary");
   const sumParagraph = document.createElement("p");
   sumParagraph.classList.add("character-summary");
-  sumParagraph.textContent = `There are ${characterList.length}  ${characterName}s, ${numAlive} are alive, ${numDead} are dead, and ${numMIA} are MIA.`;
+
+  sumParagraph.textContent = `There are ${characterCount}  ${characterName}s, ${numAlive} are alive, ${numDead} are dead, and ${numMIA} are MIA.`;
+
   summaryContainer.innerHTML = "";
   summaryContainer.appendChild(sumParagraph);
 };
