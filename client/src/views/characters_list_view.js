@@ -22,33 +22,67 @@ CharacterListView.prototype.bindEvents = function(){
   })
 };
 
-CharacterListView.prototype.renderCharacterSummary = function (mainCharacterObject) {
-  const characterList = mainCharacterObject.characterList
-  const characterName = mainCharacterObject.characterName
-
-// refactor - get numAlive
+CharacterListView.prototype.getNumAlive = function(characterList){
   let numAlive = 0
   characterList.forEach((character) => {
     if (character.status === "Alive"){
       numAlive ++;
     };
   });
+  return numAlive;
+}
 
-// refactor - get numDead
+CharacterListView.prototype.getNumDead = function(characterList){
   let numDead = 0
   characterList.forEach((character) => {
     if (character.status === "Dead"){
       numDead ++;
     };
   });
+  return numDead
+}
 
-// refactor - get numMIA
+CharacterListView.prototype.getNumMIA = function(characterList){
   let numMIA = 0
   characterList.forEach((character) => {
     if (character.status === "unknown"){
       numMIA ++;
     };
   });
+  return numMIA
+}
+
+CharacterListView.prototype.renderCharacterSummary = function (mainCharacterObject) {
+  const characterList = mainCharacterObject.characterList
+  const characterName = mainCharacterObject.characterName
+
+// refactor - get numAlive
+let numAlive = this.getNumAlive(characterList);
+let numDead = this.getNumDead(characterList);
+let numMIA = this.getNumMIA(characterList);
+
+  // let numAlive = 0
+  // characterList.forEach((character) => {
+  //   if (character.status === "Alive"){
+  //     numAlive ++;
+  //   };
+  // });
+
+// refactor - get numDead
+  // let numDead = 0
+  // characterList.forEach((character) => {
+  //   if (character.status === "Dead"){
+  //     numDead ++;
+  //   };
+  // });
+
+// refactor - get numMIA
+  // let numMIA = 0
+  // characterList.forEach((character) => {
+  //   if (character.status === "unknown"){
+  //     numMIA ++;
+  //   };
+  // });
 
   const summaryContainer = document.querySelector("section#character-summary");
   const pickleRick = document.createElement("p");

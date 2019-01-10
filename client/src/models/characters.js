@@ -79,8 +79,6 @@ Characters.prototype.getAllCharacters = function (pagesArray) {
 
 };
 
-
-
 Characters.prototype.charactersByName = function (characterName) {
   let thisData = this.data;
   if (characterName === "all")  {
