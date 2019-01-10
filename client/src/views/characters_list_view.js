@@ -23,46 +23,41 @@ CharacterListView.prototype.bindEvents = function(){
 };
 
 CharacterListView.prototype.getCharacterCount = function (characterList) {
-  return characterList.length
+  return characterList.length;
 };
 
-CharacterListView.prototype.getNumAlive = function(characterList){
-  let numAlive = 0
+CharacterListView.prototype.getStatusCounts = function(characterList){
+  let numAlive = 0;
+  let numDead = 0;
+  let numMIA = 0;
+  let statusCounts = []
+
   characterList.forEach((character) => {
     if (character.status === "Alive"){
       numAlive ++;
-    };
-  });
-  return numAlive;
-}
-
-CharacterListView.prototype.getNumDead = function(characterList){
-  let numDead = 0
-  characterList.forEach((character) => {
-    if (character.status === "Dead"){
+    }
+    else if (character.status === "Dead") {
       numDead ++;
-    };
+    }
+    else if (character.status === "unknown") {
+      numMIA ++;
+    }
   });
-  return numDead
+  statusCounts.push(numAlive);
+  statusCounts.push(numDead);
+  statusCounts.push(numMIA);
+  return statusCounts;
 }
 
-CharacterListView.prototype.getNumMIA = function(characterList){
-  let numMIA = 0
-  characterList.forEach((character) => {
-    if (character.status === "unknown"){
-      numMIA ++;
-    };
-  });
-  return numMIA
-}
 
 CharacterListView.prototype.renderCharacterSummary = function (mainCharacterObject) {
   const characterList = mainCharacterObject.characterList
   const characterName = mainCharacterObject.characterName
 
-  let numAlive = this.getNumAlive(characterList);
-  let numDead = this.getNumDead(characterList);
-  let numMIA = this.getNumMIA(characterList);
+  let statusCounts = this.getStatusCounts(characterList);
+  let numAlive = statusCounts[0]
+  let numDead = statusCounts[1]
+  let numMIA = statusCounts[2]
   let characterCount = this.getCharacterCount(characterList);
 
   const summaryContainer = document.querySelector("section#character-summary");
