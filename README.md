@@ -14,4 +14,4 @@
   ```
   npm start
   ```
-- Finally, open the index.html file found in the client/public folder.
+- Terminal will direct you to the port running the app (should be port 3000)
